@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ResultsPage extends StatefulWidget {
   ResultsPage({Key key, this.title}) : super(key: key);
@@ -21,12 +20,10 @@ class ResultsPage extends StatefulWidget {
 }
 
 class _ResultsPageState extends State<ResultsPage> {
-
   @override
   void initState() {
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,4 +47,3 @@ class _ResultsPageState extends State<ResultsPage> {
     );
   }
 }
-

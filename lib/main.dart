@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'drawer.dart';
-import 'results.dart';
+import 'login.dart';
 
 void main() => runApp(FRC4003ScoutApp());
 
@@ -180,6 +181,20 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
     _matchBegun = false;
   }
 
+  /* Check to see if the user is logged in.  If not send them to the login
+   * page.
+   */
+  void checkLogin(BuildContext context) async {
+    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    if (user == null) {
+      debugPrint("Not logged in... redirecting.");
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => LoginPage(title: 'Login')));
+    } else {
+      debugPrint("Current user id: ${user.uid}");
+    }
+  }
+
   String getCurrDocumentID() {
     return "$_compYear:$_compName:${_teamObj.teamNumber}:${_studentObj.key}:$_matchNumber";
   }
@@ -328,16 +343,15 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
       children: <Widget>[
         Text('Control Panel To Correct Color'),
         Switch(
-          onChanged: (bool b) {
-            setState(() {
-              Firestore.instance
-                  .collection('scoutresults')
-                  .document(getCurrDocumentID())
-                  .updateData({'control_panel': b});
-            });
-          },
-          value: sr.controlPanel,
-        )
+            onChanged: (bool b) {
+              setState(() {
+                Firestore.instance
+                    .collection('scoutresults')
+                    .document(getCurrDocumentID())
+                    .updateData({'control_panel': b});
+              });
+            },
+            value: sr.controlPanel),
       ],
     );
   }
@@ -841,6 +855,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    checkLogin(context);
     // This method is rerun every time setState is called and setState detects a
     // change that warrants a rebuild of the UI.
     // It's like magic.  OoOoOo!
