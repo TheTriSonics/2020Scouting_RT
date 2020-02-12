@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'drawer.dart';
-import 'signin.dart';
 import 'main.dart';
 
 /*
@@ -65,7 +64,9 @@ class _LoginPageState extends State<LoginPage> {
         String email = _emailController.text.trim();
         String pass = _passController.text.trim();
         debugPrint("Logging in $email with $pass");
-        signInWithEmail(email, pass).whenComplete(() {
+        FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: pass)
+            .whenComplete(() {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
