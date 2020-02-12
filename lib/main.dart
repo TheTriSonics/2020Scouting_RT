@@ -570,6 +570,27 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
     );
   }
 
+  Widget buildMatchNumber(BuildContext context, ScoutResult sr) {
+    if (_studentObj == null) {
+      return Text('select student first.');
+    }
+    Text('Match Number');
+    return Row(
+      children: <Widget>[
+        new Flexible(
+          child: new TextField(
+            controller: _commentController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Match Number',
+            ),
+            style: Theme.of(context).textTheme.body1,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget buildSubmitButton(BuildContext context, ScoutResult sr) {
     if (_studentObj == null) {
       return Text('select student first.');
@@ -795,6 +816,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
+        buildMatchNumber(context, sr),
         SizedBox(height: 30),
         Text('Autonomous', style: TextStyle(fontWeight: FontWeight.bold)),
         buildAutoLine(context, sr),
