@@ -163,6 +163,8 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
   String _optionHang;
   String _optionMove;
 
+  final _commentController = TextEditingController();
+
   /* 
     * JJB: 
     * Part of me says this should be selectable and part of me says this might
@@ -556,6 +558,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
       children: <Widget>[
         new Flexible(
           child: new TextField(
+            controller: _commentController,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Comments',
@@ -563,6 +566,26 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             style: Theme.of(context).textTheme.body1,
           ),
         ),
+      ],
+    );
+  }
+
+  Widget buildSubmitButton(BuildContext context, ScoutResult sr) {
+    if (_studentObj == null) {
+      return Text('select student first.');
+    }
+
+    return Row(
+      children: <Widget>[
+        RaisedButton(
+            child: Text('Submit'),
+            onPressed: () {
+              debugPrint("Handle submit here.");
+              Firestore.instance
+                  .collection('scoutresults')
+                  .document(getCurrDocumentID())
+                  .updateData({'comments': _commentController.text.trim()});
+            }),
       ],
     );
   }
@@ -794,6 +817,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         buildCanMove(context, sr),
         buildBuddyHang(context, sr),
         buildCommentBar(context, sr),
+        buildSubmitButton(context, sr),
       ],
     );
   }
