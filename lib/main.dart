@@ -64,6 +64,8 @@ class ScoutResult {
   int teleopPortTop = 0;
   int teleopPortBottom = 0;
   bool canBuddyHang = false;
+  String comments = "";
+  String matchNumber = "";
 
   ScoutResult.fromSnapshot(DocumentSnapshot snapshot)
       : autoLine =
@@ -164,6 +166,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
   String _optionMove;
 
   final _commentController = TextEditingController();
+  final _matchNumberController = TextEditingController();
 
   /* 
     * JJB: 
@@ -186,15 +189,16 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
   /* Check to see if the user is logged in.  If not send them to the login
    * page.
    */
-  void checkLogin(BuildContext context) async {
-    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    if (user == null) {
-      debugPrint("Not logged in... redirecting.");
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => LoginPage(title: 'Login')));
-    } else {
-      debugPrint("Current user id: ${user.uid}");
-    }
+  void checkLogin(BuildContext context) {
+    FirebaseAuth.instance.currentUser().then((FirebaseUser user) {
+      if (user == null) {
+        debugPrint("Not logged in... redirecting.");
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => LoginPage(title: 'Login')));
+      } else {
+        debugPrint("Current user id: ${user.uid}");
+      }
+    });
   }
 
   String getCurrDocumentID() {
@@ -579,7 +583,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
       children: <Widget>[
         new Flexible(
           child: new TextField(
-            controller: _commentController,
+            controller: _matchNumberController,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Match Number',
