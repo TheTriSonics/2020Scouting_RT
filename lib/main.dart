@@ -112,7 +112,12 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
   final _commentController = TextEditingController();
   final _matchController = TextEditingController();
   final _submitSnackbar = SnackBar(
-    content: Text("successfully submitted"),
+    content: Text("Successfully submitted!"),
+    backgroundColor: Colors.green,
+  );
+
+  final _validateErrorSnackbar = SnackBar(
+    content: Text("Student, team, and match must be entered"),
     backgroundColor: Colors.red,
   );
 
@@ -144,8 +149,6 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         debugPrint("Not logged in... redirecting.");
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => LoginPage(title: 'Login')));
-      } else {
-        debugPrint("Current user id: ${user.uid}");
       }
     });
   }
@@ -502,17 +505,26 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
               color: Colors.red,
               child: Text('Submit'),
               onPressed: () {
-                _scoutResult.comments = _commentController.text.trim();
-                var d = createMatchDocumentData();
-                Firestore.instance
-                    .collection('scoutresults')
-                    .document(getCurrDocumentID())
-                    .setData(d);
-                _scaffoldKey.currentState.showSnackBar(_submitSnackbar);
-                setState(() {
-                  _scoutResult = new ScoutResult();
-                  _matchController.text = "";
-                });
+                if (_studentObj == null ||
+                    _teamObj == null ||
+                    _matchController.text.trim().length == 0) {
+                  _scaffoldKey.currentState
+                      .showSnackBar(_validateErrorSnackbar);
+                } else {
+                  _scoutResult.comments = _commentController.text.trim();
+                  var d = createMatchDocumentData();
+                  Firestore.instance
+                      .collection('scoutresults')
+                      .document(getCurrDocumentID())
+                      .setData(d);
+                  _scaffoldKey.currentState.showSnackBar(_submitSnackbar);
+                  setState(() {
+                    _teamObj = null;
+                    _scoutResult = new ScoutResult();
+                    _matchController.text = "";
+                    _commentController.text = "";
+                  });
+                }
               }),
         )
       ],
