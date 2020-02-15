@@ -614,10 +614,8 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
                     }
                   });
                 }),
-            // TODO: Text() widgets aren't stateful, so changing the variable
-            // behind one doesn't trigger a build(). So, we need to use a
-            // TextField instead.
-            SizedBox(width: 16), Text(_scoutResult.teleopPortBottom.toString()),
+            SizedBox(width: 16),
+            Text(_scoutResult.teleopPortBottom.toString()),
             SizedBox(width: 16),
             IconButton(
                 icon: Icon(Icons.add),
@@ -760,7 +758,6 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
   }
 
   Map<String, dynamic> createMatchDocumentData() {
-    //TODO: Pretty sure we're missing some here.
     var d = {
       'student_name': _studentObj.name,
       'match_number': _matchController.text.trim(),
@@ -808,7 +805,6 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
   Widget build(BuildContext context) {
     checkLogin(context);
 
-    Widget scoutingArea = Text('Select student, team, and enter match first.');
     // This method is rerun every time setState is called and setState detects a
     // change that warrants a rebuild of the UI.
     // It's like magic.  OoOoOo!
