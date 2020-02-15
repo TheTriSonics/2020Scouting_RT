@@ -44,8 +44,22 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextField(controller: _emailController),
-              TextField(controller: _passController),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                ),
+                style: Theme.of(context).textTheme.body1,
+              ),
+              TextField(
+                controller: _passController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+                style: Theme.of(context).textTheme.body1,
+              ),
               SizedBox(height: 50),
               _signInButton(),
               SizedBox(height: 50),
