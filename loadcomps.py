@@ -60,8 +60,6 @@ def load_event(year, compname):
     comp_col = db.collection('competitions')\
                  .document(year)\
                  .collection(compname)
-    # events = get_events(2020)
-    # print(events)
     teams = get_teams_at_event(f'{year}{compname}')
     for t in teams:
         num = t['team_number']
@@ -71,11 +69,18 @@ def load_event(year, compname):
         tdata = {}
         tdata['team_name'] = name
         tdata['school_name'] = school
+        tdata['sort_order'] = int(num)
         comp_col.document(str(num)).set(tdata)
+
+def show_events():
+    events = get_events(2020)
+    print(events)
+
 
 
 if __name__ == '__main__':
     import sys
     year = datetime.now().year
-    compname = sys.argv[1]
+    show_events()
+    compname = sys.argv[1] or ''
     load_event(year, compname)
