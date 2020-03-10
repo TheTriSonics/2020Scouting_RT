@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'login.dart';
+import 'create_account.dart';
 
 Widget buildAppDrawer(BuildContext context) {
   return Drawer(
@@ -36,6 +37,16 @@ Widget buildAppDrawer(BuildContext context) {
                 context,
                 MaterialPageRoute(
                     builder: (context) => LoginPage(title: 'Login')));
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.data_usage),
+          title: Text('Create Account'),
+          onTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CreateAccountPage(title: 'Create Account')));
           },
         ),
       ],
