@@ -115,6 +115,11 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
     content: Text("Successfully submitted!"),
     backgroundColor: Colors.green,
   );
+  
+  final _updateErrorSnackbar = SnackBar(
+    content: Text("Save failed due to account permissions."),
+    backgroundColor: Colors.red
+  );
 
   final _validateErrorSnackbar = SnackBar(
     content: Text("Student, team, and match must be entered"),
@@ -525,16 +530,40 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
                 } else {
                   _scoutResult.comments = _commentController.text.trim();
                   var d = createMatchDocumentData();
+                  bool updateSuccess = true;
                   Firestore.instance
                       .collection('scoutresults')
                       .document(getCurrDocumentID())
-                      .setData(d);
-                  _scaffoldKey.currentState.showSnackBar(_submitSnackbar);
-                  setState(() {
-                    _teamObj = null;
-                    _scoutResult = new ScoutResult();
-                    _matchController.text = "";
-                    _commentController.text = "";
+                      .setData(d)
+                      .catchError((error) {
+                    updateSuccess = false;
+                  }).then((ctx) {
+                    if (updateSuccess) {
+                      _scaffoldKey.currentState.showSnackBar(_submitSnackbar);
+                      setState(() {
+                        _teamObj = null;
+                        _scoutResult = new ScoutResult();
+                        _matchController.text = "";
+                        _commentController.text = "";
+                      });
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Save failed!"),
+                              content: Text("Your save failed due to account permissions."),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text("Ok"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ],
+                            );
+                          });
+                    }
                   });
                 }
               }),
@@ -623,7 +652,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
-                FocusScope.of(context).unfocus();
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.teleopPortBottom--;
                     if (_scoutResult.teleopPortBottom < 0) {
@@ -637,7 +666,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
-                FocusScope.of(context).unfocus();
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.teleopPortBottom++;
                   });
