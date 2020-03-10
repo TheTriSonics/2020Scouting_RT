@@ -1,27 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "/home/trisonics/git/frc4003scout/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml",
+            "outputFile": "/home/jbuist/robotics_git/2020Scouting_RT/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml",
             "map": [
                 {
-                    "source": "/home/trisonics/.gradle/caches/transforms-2/files-2.1/8fd20ba13979c5268c864a098b299737/jetified-play-services-basement-17.0.0/res/values-ru/values.xml",
+                    "source": "/home/jbuist/.gradle/caches/transforms-2/files-2.1/df6cf23cc51da578d8b158de17d0c9cb/core-1.0.0/res/values-ru/values-ru.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "215",
-                        "endOffsets": "462"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1262",
-                        "endColumns": "215",
-                        "endOffsets": "1473"
+                        "startOffsets": "2867",
+                        "endColumns": "100",
+                        "endOffsets": "2963"
                     }
                 },
                 {
-                    "source": "/home/trisonics/.gradle/caches/transforms-2/files-2.1/8ac2c71cc9965485e4fc4eaca5d4253a/play-services-base-17.1.0/res/values-ru/values.xml",
+                    "source": "/home/jbuist/.gradle/caches/transforms-2/files-2.1/8ac2c71cc9965485e4fc4eaca5d4253a/play-services-base-17.1.0/res/values-ru/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "/home/trisonics/.gradle/caches/transforms-2/files-2.1/df6cf23cc51da578d8b158de17d0c9cb/core-1.0.0/res/values-ru/values-ru.xml",
+                    "source": "/home/jbuist/.gradle/caches/transforms-2/files-2.1/e67b6a6c945579ed1431bb4fff8cdd4b/jetified-play-services-basement-17.0.0/res/values-ru/values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "215",
+                        "endOffsets": "462"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "2867",
-                        "endColumns": "100",
-                        "endOffsets": "2963"
+                        "startOffsets": "1262",
+                        "endColumns": "215",
+                        "endOffsets": "1473"
                     }
                 }
             ]
