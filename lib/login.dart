@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'drawer.dart';
 import 'main.dart';
 
@@ -52,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 96),
                   TextField(
                     controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Enter email address',
@@ -62,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 32),
                   TextField(
                     controller: _passController,
+                    keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Enter your password',
@@ -87,15 +90,40 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         String email = _emailController.text.trim();
         String pass = _passController.text.trim();
-        FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: pass)
-            .whenComplete(() {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      ScoutHomePage(title: 'Trisonics Scouting')));
-        });
+        bool createSuccess = true;
+        try {
+          FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: email, password: pass)
+              .catchError((error) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Error"),
+                    content: Text(error.message),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text("Ok"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  );
+                });
+            createSuccess = false;
+          }).then((ar) {
+            if (createSuccess) {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ScoutHomePage(title: 'Trisonics Scouting')));
+            }
+          });
+        } on PlatformException catch (error) {
+          debugPrint(error.toString());
+        }
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
