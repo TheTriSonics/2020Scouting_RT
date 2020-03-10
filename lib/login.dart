@@ -84,7 +84,6 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         String email = _emailController.text.trim();
         String pass = _passController.text.trim();
-        debugPrint("Logging in $email with $pass");
         FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: pass)
             .whenComplete(() {
