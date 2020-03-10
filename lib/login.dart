@@ -39,23 +39,29 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Container(
         color: Colors.white,
-        child: Center(
-          child: Column(
+        child: SingleChildScrollView(child: 
+        Center(
+          child: Padding(padding: EdgeInsets.fromLTRB(48, 0, 48, 0), child:
+          Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Image(image: AssetImage('assets/TriSonicsLogo.png'), height: 96),
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
+                  hintText: 'Enter email address',
                   labelText: 'Email',
                 ),
                 style: Theme.of(context).textTheme.body1,
               ),
+              SizedBox(height: 32),
               TextField(
                 controller: _passController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
+                  hintText: 'Enter your password',
                   labelText: 'Password',
                 ),
                 style: Theme.of(context).textTheme.body1,
@@ -66,8 +72,8 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-      ),
-    );
+      )),
+    ));
   }
 
   /* Builds the sign in button with event handler to perform the login
