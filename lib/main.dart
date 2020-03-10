@@ -260,6 +260,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Moved completely off auto line?'),
         Switch(
           onChanged: (bool b) {
+            FocusScope.of(context).unfocus();
             setState(() {
               _scoutResult.autoLine = b;
             });
@@ -277,6 +278,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Control Panel To Correct Color'),
         Switch(
             onChanged: (bool b) {
+              FocusScope.of(context).unfocus();
               setState(() {
                 _scoutResult.controlPanelColor = b;
               });
@@ -293,6 +295,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Control Panel Rotation Count'),
         Switch(
           onChanged: (bool b) {
+            FocusScope.of(context).unfocus();
             setState(() {
               _scoutResult.controlPanelRotation = b;
             });
@@ -310,6 +313,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Ground Pickup Capable'),
         Switch(
           onChanged: (bool b) {
+            FocusScope.of(context).unfocus();
             setState(() {
               _scoutResult.groundPickup = b;
             });
@@ -327,6 +331,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Human Loading Port'),
         Switch(
           onChanged: (bool b) {
+            FocusScope.of(context).unfocus();
             setState(() {
               _scoutResult.humanLoadingPort = b;
             });
@@ -344,6 +349,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Goes Under Control Panel'),
         Switch(
           onChanged: (bool b) {
+            FocusScope.of(context).unfocus();
             setState(() {
               _scoutResult.underControlPanel = b;
             });
@@ -365,6 +371,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.autoPortInner--;
                     if (_scoutResult.autoPortInner < 0) {
@@ -378,6 +385,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.autoPortInner++;
                   });
@@ -399,6 +407,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.autoPortTop--;
                     if (_scoutResult.autoPortTop < 0) {
@@ -412,6 +421,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.autoPortTop++;
                   });
@@ -434,6 +444,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.autoPortBottom--;
                     if (_scoutResult.autoPortBottom < 0) {
@@ -447,6 +458,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.autoPortBottom++;
                   });
@@ -542,6 +554,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.teleopPortInner--;
                     if (_scoutResult.teleopPortInner < 0) {
@@ -555,6 +568,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.teleopPortInner++;
                   });
@@ -574,6 +588,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
           IconButton(
               icon: Icon(Icons.remove),
               onPressed: () {
+                FocusScope.of(context).unfocus();
                 setState(() {
                   _scoutResult.teleopPortTop--;
                   if (_scoutResult.teleopPortTop < 0) {
@@ -587,6 +602,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
           IconButton(
               icon: Icon(Icons.add),
               onPressed: () {
+                FocusScope.of(context).unfocus();
                 setState(() {
                   _scoutResult.teleopPortTop++;
                 });
@@ -607,6 +623,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
+                FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.teleopPortBottom--;
                     if (_scoutResult.teleopPortBottom < 0) {
@@ -620,6 +637,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
+                FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.teleopPortBottom++;
                   });
@@ -637,6 +655,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
         Text('Can Buddy Climb'),
         Switch(
           onChanged: (bool b) {
+            FocusScope.of(context).unfocus();
             setState(() {
               _scoutResult.canBuddyHang = b;
             });
@@ -661,6 +680,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
               DropdownButton<String>(
                 value: _scoutResult.optionHang,
                 onChanged: (String v) {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.optionHang = v;
                   });
@@ -696,6 +716,7 @@ class _ScoutHomePageState extends State<ScoutHomePage> {
               DropdownButton<String>(
                 value: _scoutResult.optionMove,
                 onChanged: (String v) {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _scoutResult.optionMove = v;
                   });
